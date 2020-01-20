@@ -4,11 +4,12 @@ main.py contains the main program that runs the tic tac toe game
 import functions
 import time
 
-while True:
+print('Welcome to Tic Tac Toe!')
+time.sleep(1)
+
+keep_play = True
+while keep_play==True:
     #----------------------------- Set up the game ----------------------------------
-    
-    print('Welcome to Tic Tac Toe!')
-    time.sleep(1)
     
     ###*************************************************###
     ### STEP 1: ASSIGN PLAYER 1'S AND PLAYER 2'S MARKERS ###
@@ -51,12 +52,14 @@ while True:
     ###************************###
     ### STEP 4: READY TO PLAY? ###
     ###************************###
-    
-    if input('Are you ready to play? Enter Yes or No:')=='Yes':
-        game_on = True
-    else:
-        game_on = False
-        continue
+    game_on = False
+    while game_on == False:
+        ready = input('Are you ready to play? Enter Yes or No:')
+        if ready =='Yes':
+            game_on = True
+            break
+
+        
     
     #**Checker**#
     #print (game_on)
@@ -78,7 +81,7 @@ while True:
         ###**************************###
         ### STEP 3: GAME PLAY STARTS ###
         ###**************************###
-        
+
         while functions.full_board_check(gameboard) == False:
             
             #Player 1 Turn
@@ -93,11 +96,16 @@ while True:
             #Break out of the loop if player 1 wins
             if functions.win_check(gameboard,d_plyr_marker[first_plyr])==True:
                 print(f'Game Over. {first_plyr} (marker:{d_plyr_marker[first_plyr]}) won!')
+                game_on=False
                 break
-            
+
+                
+            # Chec
             if functions.full_board_check(gameboard)==True:
                 print('Game Over. It is a tie!')
+                game_on=False
                 break
+
                 
             # Player2's turn.
             print (f'{second_plyr} (marker {d_plyr_marker[second_plyr]}):')
@@ -106,16 +114,17 @@ while True:
             functions.display_board(gameboard)
            
             
-            #Break out of the loop if player 1 wins
+            #Break out of the loop if player 2 wins
             if functions.win_check(gameboard,d_plyr_marker[second_plyr])==True:
                 print(f'Game Over. {second_plyr} (marker:{d_plyr_marker[second_plyr]}) won!')
+                game_on=False
                 break
-            
-    
+
         break
-    break
+
+    keep_play = functions.replay()   #Break the loop if the user choose not to keep playing
     
-    #if not replay():
-        #break
+    
+print('Thank you for playing! Hope to see you again!')
         
     

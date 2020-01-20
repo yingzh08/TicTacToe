@@ -175,7 +175,7 @@ def choose_position(board):
         except ValueError:
             print('Please check your input and try again.')
         except IndexError:
-            print(f'Please enter a number between 1 and {len(board)}')
+            print(f'Please enter a number between 1 and {len(board)-1}')
 
 def win_check(board, marker):
     '''Return TRUE if marker(parameter) in the current game board(parameter) has won.
@@ -252,10 +252,10 @@ def replay():
     boolean
         TRUE if yes, FALSE if no
     '''
-    choice = input('Reply? (Yes or No)')
+    choice = input('Replay? (Yes or No)')
     while choice != 'Yes' and choice != 'No':
         print('Please choose between Yes or No only')
-        choice = input('Reply? (Yes or No)')
+        choice = input('Replay? (Yes or No)')
     else:
         return choice == 'Yes'
 
