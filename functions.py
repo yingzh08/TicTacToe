@@ -1,6 +1,9 @@
 """
 functions.py stores all functions used in the main.py program. 
 """
+import sys
+import time
+import random
 
 def display_board(board):
     '''Takes in board's content (list) and prints the board in a 3 by 3 grid.
@@ -39,37 +42,25 @@ def choose_marker():    #player_input()
 
     Returns
     --------
-    string
-        Player 1's marker
+    tuple
+        (Player 1's marker, Player 2's marker)
     '''
     marker = ''
     while marker != 'X' and marker != 'O':
         marker = input('Player 1: Please choose marker: X or O?')
+
+#     Return tuple. then tuple unpacking. 
+    if marker == 'X':
+        print("Player 1: Your marker is 'X'")
+        time.sleep(1)
+        print("Player 2: Your marker is 'O'")
+        return ('X','O')
     else:
-        print(f'Player 1: Your marker is {marker}')
-        return marker
+        print("Player 1: Your marker is 'O'")
+        time.sleep(1)
+        print("Player 2: Your marker is 'X'")
+        return ('O','X')
 
-def player2_marker(marker):
-    '''Takes in player 1's marker and automatically returns
-    marker for player 2
-
-
-    Parameters
-    --------
-    marker: str
-        Player 1's marker
-    
-
-    Returns
-    --------
-    string
-        Player 2's marker
-    '''
-    markerset = {'X','O'}
-    marker2 = markerset - set(marker)
-    marker2 = ''.join(marker2)
-    print('Player 2: Your marker is '+ marker2)
-    return (marker2)
 
 def place_marker(board, marker, position):
     '''Takes board, player's marker, and a desire position and returns
@@ -102,7 +93,6 @@ def choose_first():
     string
         marker that goes first ('X' or 'O')
     '''
-    import random
     marker_list=['X','O']
     random_index=random.randint(0,1)
     return marker_list[random_index]
@@ -268,8 +258,6 @@ def count_down(seconds):
     seconds: int
         time (in seconds) to count down from
     '''
-    import sys
-    import time
 
     cnt = seconds + 1
     while 1 <= cnt:

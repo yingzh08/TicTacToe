@@ -16,10 +16,12 @@ while keep_play==True:
     ###*************************************************###
     d_plyr_marker = {'Player 1':'', 'Player 2':''} #Create a player to marker dictionary
     
-    d_plyr_marker['Player 1'] = functions.choose_marker() #Ask for player 1's marker
+    player1_marker, player2_marker = functions.choose_marker() #tuple unpacking
+
+    d_plyr_marker['Player 1'] = player1_marker #assign player 1's marker
     time.sleep(1)
     
-    d_plyr_marker['Player 2'] = functions.player2_marker(d_plyr_marker['Player 1']) #Return player 2's marker
+    d_plyr_marker['Player 2'] = player2_marker #assign player 2's marker
     time.sleep(1)
     
     #**Checker**#
